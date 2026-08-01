@@ -1,3 +1,5 @@
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/tiaow/--/main/DM.lua"))()
+
 local library = loadstring(game:HttpGet("https://github.com/tiaow/gb/blob/0fdfacbd511b7b5c38c830401f76664d3f8bfb7d/%E5%BD%A9%E8%89%B2ui"))()
 local window = library:new("DW")
 
