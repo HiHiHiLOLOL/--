@@ -163,10 +163,11 @@ end})
  local SF = game:GetService("Players").LocalPlayer.CameraMaxZoomDistance
 PLR:AddTextbox({
     Name = "缩放距离",
-    Default = "随便",
+    Default = "",
     TextDisappear = true,
     Callback = function(v)
-if v <= 0 then
+    local TheVB2 = tonumber(v)
+if TheVB2 <= 0 then
         OrionLib:MakeNotification({
         Name = "提示",
         Content = "没这么随便（必须大于0）",
@@ -179,19 +180,32 @@ if v <= 0 then
         Sound:Play()
         Sound.Ended:Wait()
         Sound:Destroy()
-elseif v >= 1 then
-SF = v
+elseif TheVB2 >= 1 then
+SF = TheVB2
 print(SF)
+OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "设置成功，值：" .. SF ,
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
 end
 end})
 
 local SJu = game.Workspace.CurrentCamera.FieldOfView
 PLR:AddTextbox({
     Name = "视界",
-    Default = "随便",
+    Default = "",
     TextDisappear = true,
     Callback = function(v)
-if v <= 0 then
+   local  TheV1 = tonumber(v)
+if TheV1 <= 0 then
         OrionLib:MakeNotification({
         Name = "提示",
         Content = "没这么随便（必须大于0）",
@@ -204,11 +218,22 @@ if v <= 0 then
         Sound:Play()
         Sound.Ended:Wait()
         Sound:Destroy()
-elseif v >= 1 and v <= 120 then
-SJu = v
-print(SF)
+elseif TheV1 >= 1 and TheV1 <= 120 then
+SJu = TheV1
+print(SJu)
+OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "设置成功，值：" .. SJu ,
+        Time = 2.5 })
 
-elseif v > 120 then
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+elseif TheV1 > 120 then
 SJu = 120
 OrionLib:MakeNotification({
         Name = "提示",
