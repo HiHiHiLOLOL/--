@@ -47,7 +47,11 @@ local Tab = Window:MakeTab({
     Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
     PremiumOnly = false
 })
-
+local PLR = Window:MakeTab({
+    Name = "玩家",
+    Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
+    PremiumOnly = false
+})
 
 
 
@@ -138,7 +142,7 @@ end})
 
 local CH = game:GetService("Players").LocalPlayer.Character
 Tab:AddButton({
-    Name = "改变摄像头",
+    Name = "改变摄像头（不可逆）",
     Callback = function()
    
 workspace.Camera:Destroy()
@@ -150,14 +154,104 @@ for _ , v in workspace.SpawnBox:GetChildren() do
 if v.Name == "Part" then
 v.Transparency = 0.5
 v.CanCollide = false
-if v.Name == "SpawnLocation" then
+elseif v.Name == "SpawnLocation" then
 v.Transparency = 0
 end
 end
 end})
-                
+
+ local SF = game:GetService("Players").LocalPlayer.CameraMaxZoomDistance
+PLR:AddTextbox({
+    Name = "缩放距离",
+    Default = "随便",
+    TextDisappear = true,
+    Callback = function(v)
+if v <= 0 then
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "没这么随便（必须大于0）",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+elseif v >= 1 then
+SF = v
+print(SF)
+end
+end})
+
+local SJu = game.Workspace.CurrentCamera.FieldOfView
+PLR:AddTextbox({
+    Name = "视界",
+    Default = "随便",
+    TextDisappear = true,
+    Callback = function(v)
+if v <= 0 then
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "没这么随便（必须大于0）",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+elseif v >= 1 and v <= 120 then
+SJu = v
+print(SF)
+
+elseif v > 120 then
+SJu = 120
+OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "你输入的值大于120，最大值是120，自动改为120",
+        Time = 4 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+end
+end})
 
 
+
+PLR:AddButton({
+    Name = "飞行",
+    Callback = function()
+   
+loadstring(game:HttpGet'https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt')()
+end})               
+
+PLR:AddButton({
+    Name = "碰到就飞脚本",
+    Callback = function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI"))()  
+
+end})               
+
+PLR:AddButton({
+    Name = "铁拳甩飞脚本",
+    Callback = function()
+ loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_rf6iQURzu1fqrytcnLBAvW34C9N55kS9g9G3CKz086rC47M6632sEd4ZZYB0AYgV.lua.txt'))()
+end})  
+
+spawn(function() while task.wait() do 
+game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = SF 
+game.Workspace.CurrentCamera.FieldOfView = SJu
+end
+end)
 --[[
 Tab:AddTextbox({
     Name = "输入",
