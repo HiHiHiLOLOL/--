@@ -1,50 +1,146 @@
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/tiaow/--/main/DM.lua"))()
-
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/tiaow/gb/0fdfacbd511b7b5c38c830401f76664d3f8bfb7d/彩色ui"))()
-local window = library:new("DW")
-
-local Xing = window:Tab("信息",'')
-local Main = window:Tab("主要",'')
-
-Xing1:Label("作者:idk")
- Xing1:Label("应该不会ban（maybe）")
-
-local Xing2 = Xing:section("设置",true)
-        Xing2:Toggle("移除UI辉光", "", false, function(state)
-            if state then
-                game:GetService("CoreGui")["frosty is cute"].Main.DropShadowHolder.Visible = false
-            else
-                game:GetService("CoreGui")["frosty is cute"].Main.DropShadowHolder.Visible = true
-            end
-    end)
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/-/Main/UI"))()
 
 
-        Xing2:Toggle("彩虹UI", "", false, function(state)
-            if state then
-                game:GetService("CoreGui")["frosty is cute"].Main.Style = "DropShadow"
-            else
-                game:GetService("CoreGui")["frosty is cute"].Main.Style = "Custom"
-            end
-    end)
 
+OrionLib:MakeNotification({
+    Name = "提示",
+    Content = "脚本启动中",
+    Time = 2.5 })
+
+local Sound = Instance.new("Sound")
+    Sound.SoundId = "rbxassetid://4590662766"
+    Sound.Parent = game:GetService("SoundService")
+    Sound.Volume = 5
+    Sound:Play()
+    Sound.Ended:Wait()
+    Sound:Destroy()
+
+local Window = OrionLib:MakeWindow({Name = "欢迎", HidePremium = false, SaveConfig = false, IntroText = "脚本中心", ConfigFolder = "脚本"})
+
+local XingX = Window:MakeTab({
+    Name = "信息",
+    Icon = "",   --推荐rbxassetid://4483345998
+    PremiumOnly = false
+})
+
+XingX:AddParagraph("作者：","Idk")
+XingX:AddLabel("应该不会ban（maybe）")
+
+
+
+local Tab = Window:MakeTab({
+    Name = "主要",
+    Icon = "",   --推荐rbxassetid://4483345998
+    PremiumOnly = false
+})
+
+
+
+
+
+local PG = game:GetService("Players").LocalPlayer.PlayerGui
+
+Tab:AddButton({
+    Name = "让章节按钮显示",
+    Callback = function()
+    if PG:FindFirstChild("MainGui")  then
     
-        Xing2:Button("摧毁GUI",function()
-                game:GetService("CoreGui")["frosty is cute"]:Destroy()
-    end)
+        else
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "你这他妈是Dump Wars吗？",
+        Time = 2.5 })
 
-local Ma = Mian:section("huh",true)
-Ma:Button("现实章节按钮",function()
-game:GetService("Players").LocalPlayer.PlayerGui.MainGui.StageSelectionUI.Right_Button.Visible = true
-end)
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+      
+    if PG.MainGui:FindFirstChild("StageSelectionUI") then
+        else
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "你这他妈是Dump Wars吗？",
+        Time = 2.5 })
 
-Ma:Button("基地无冷却",function()
-print("_____________________________________")
-local A  =  require(game:GetService("ReplicatedStorage").Modules.StatueConfig)
-local Noob = rawget(A , "Noob Tube" )
-for s , b in A do
-rawset(b ,"AbilityCooldown" , 0)
-print(s,b)
-end
-print(Noob)
-rawset(Noob, "AbilityCooldown" ,0)
-end)
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+    
+    if PG.MainGui:FindFirstChild("Right_Button") then
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.StageSelectionUI.Right_Button.Visible = true    
+    else
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "你这他妈是Dump Wars吗？",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+    end
+    end    
+    
+    end
+end})
+
+Tab:AddButton({
+    Name = "基地技能无冷却",
+    Callback = function()
+    if game:GetService("ReplicatedStorage").Modules:FindFirstChild("StatueConfig") then
+        print("_____________________________________")
+        local A  =  require(game:GetService("ReplicatedStorage").Modules.StatueConfig)
+        local Noob = rawget(A , "Noob Tube" )
+            for s , b in A do
+                rawset(b ,"AbilityCooldown" , 0)
+                print(s,b)
+            end
+                print(Noob)
+                rawset(Noob, "AbilityCooldown" ,0)
+
+    else
+            OrionLib:MakeNotification({
+            Name = "提示",
+            Content = "没找到是和异味",
+            Time = 2.5 })
+
+            local Sound = Instance.new("Sound")
+            Sound.SoundId = "rbxassetid://4590662766"
+            Sound.Parent = game:GetService("SoundService")
+            Sound.Volume = 5
+            Sound:Play()
+            Sound.Ended:Wait()
+            Sound:Destroy()
+    end
+end})
+
+--[[
+Tab:AddTextbox({
+    Name = "输入",
+    Default = "",
+    TextDisappear = true,
+    Callback = function()
+
+end})
+
+]]
+--[[
+Tab:AddToggle({
+    Name = "开关",
+    Default = false,
+    Callback = function()
+    
+end})
+]]
