@@ -5,7 +5,7 @@ local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Chin
 
 OrionLib:MakeNotification({
     Name = "提示",
-    Content = "脚本启动中",
+    Content = "启动中",
     Time = 2.5 })
 
 local Sound = Instance.new("Sound")
@@ -16,7 +16,7 @@ local Sound = Instance.new("Sound")
     Sound.Ended:Wait()
     Sound:Destroy()
 
-local Window = OrionLib:MakeWindow({Name = "DW", HidePremium = false, SaveConfig = false, IntroText = "Dump Wars", ConfigFolder = "脚本"})
+local Window = OrionLib:MakeWindow({Name = "DW脚本", HidePremium = false, SaveConfig = false, IntroText = "Dump Wars", ConfigFolder = "脚本"})
 
 local XingX = Window:MakeTab({
     Name = "信息",
