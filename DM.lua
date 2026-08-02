@@ -86,7 +86,7 @@ Tab:AddButton({
         Sound.Ended:Wait()
         Sound:Destroy()
     
-
+    end
     
 end})
 
