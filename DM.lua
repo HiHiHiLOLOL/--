@@ -40,7 +40,7 @@ Tab:AddTextbox({
     Callback = function()
 
 end})
-
+]]
 
 local Tab = Window:MakeTab({
     Name = "主要",
