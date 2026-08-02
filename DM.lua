@@ -96,13 +96,16 @@ Tab:AddButton({
     if game:GetService("ReplicatedStorage").Modules:FindFirstChild("StatueConfig") then
         print("_____________________________________")
         local A  =  require(game:GetService("ReplicatedStorage").Modules.StatueConfig)
-        local Noob = rawget(A , "Noob Tube" )
             for s , b in A do
-                rawset(b ,"AbilityCooldown" , 0)
+               if rawget(b,"AbilityCooldown") then
+                rawset(b,"AbilityCooldown" , 0)
+                print(s)
+                else
                 print(s,b)
+                end
             end
-                print(Noob)
-                rawset(Noob, "AbilityCooldown" ,0)
+                
+                
         
         OrionLib:MakeNotification({
         Name = "提示",
