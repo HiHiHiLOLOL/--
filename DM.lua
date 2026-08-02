@@ -136,6 +136,28 @@ Tab:AddButton({
     end
 end})
 
+local CH = game:GetService("Players").LocalPlayer.Character
+Tab:AddButton({
+    Name = "改变摄像头",
+    Callback = function()
+   
+workspace.Camera:Destroy()
+wait(0.5)
+workspace.Camera.CameraSubject = CH.Humanoid
+workspace.Camera.CameraType = Enum.CameraType.Track
+CH.Humanoid.WalkSpeed = 16
+for _ , v in workspace.SpawnBox:GetChildren() do
+if v.Name == "Part" then
+v.Transparency = 0.5
+v.CanCollide = false
+if v.Name == "SpawnLocation" then
+v.Transparency = 0
+end
+end
+end})
+                
+
+
 --[[
 Tab:AddTextbox({
     Name = "输入",
