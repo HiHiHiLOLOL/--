@@ -29,7 +29,7 @@ XingX:AddLabel("应该不会ban（maybe）")
 XingX:AddButton({
     Name = "关闭脚本（不是隐藏）",
     Callback = function()
-    Window:Destroy()
+    OrionLib:Destroy()
 end})
 
 --[[
@@ -57,9 +57,7 @@ local PG = game:GetService("Players").LocalPlayer.PlayerGui
 Tab:AddButton({
     Name = "让章节按钮显示",
     Callback = function()
-    if PG:FindFirstChild("MainGui")  then
-    if PG.MainGui:FindFirstChild("StageSelectionUI") then
-    if PG.MainGui:FindFirstChild("Right_Button") then
+    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.StageSelectionUI.Right_Button then
     game:GetService("Players").LocalPlayer.PlayerGui.MainGui.StageSelectionUI.Right_Button.Visible = true    
     
         OrionLib:MakeNotification({
@@ -77,7 +75,7 @@ Tab:AddButton({
     else
         OrionLib:MakeNotification({
         Name = "提示",
-        Content = "你这他妈是Dump Wars吗？",
+        Content = "你这是Dump Wars吗？",
         Time = 2.5 })
 
         local Sound = Instance.new("Sound")
@@ -87,35 +85,8 @@ Tab:AddButton({
         Sound:Play()
         Sound.Ended:Wait()
         Sound:Destroy()
-    end
-    else
-        OrionLib:MakeNotification({
-        Name = "提示",
-        Content = "你这他妈是Dump Wars吗？",
-        Time = 2.5 })
+    
 
-        local Sound = Instance.new("Sound")
-        Sound.SoundId = "rbxassetid://4590662766"
-        Sound.Parent = game:GetService("SoundService")
-        Sound.Volume = 5
-        Sound:Play()
-        Sound.Ended:Wait()
-        Sound:Destroy()
-    end
-    else
-        OrionLib:MakeNotification({
-        Name = "提示",
-        Content = "你这他妈是Dump Wars吗？",
-        Time = 2.5 })
-
-        local Sound = Instance.new("Sound")
-        Sound.SoundId = "rbxassetid://4590662766"
-        Sound.Parent = game:GetService("SoundService")
-        Sound.Volume = 5
-        Sound:Play()
-        Sound.Ended:Wait()
-        Sound:Destroy()
-    end
     
 end})
 
