@@ -26,7 +26,7 @@ local XingX = Window:MakeTab({
 
 XingX:AddParagraph("作者：","Idk")
 XingX:AddLabel("应该不会ban（maybe）")
-Tab:AddButton({
+XingX:AddButton({
     Name = "关闭脚本（不是隐藏）",
     Callback = function()
     Window:Destroy()
