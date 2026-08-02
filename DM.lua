@@ -16,11 +16,11 @@ local Sound = Instance.new("Sound")
     Sound.Ended:Wait()
     Sound:Destroy()
 
-local Window = OrionLib:MakeWindow({Name = "欢迎", HidePremium = false, SaveConfig = false, IntroText = "脚本中心", ConfigFolder = "脚本"})
+local Window = OrionLib:MakeWindow({Name = "DW", HidePremium = false, SaveConfig = false, IntroText = "Dump Wars", ConfigFolder = "脚本"})
 
 local XingX = Window:MakeTab({
     Name = "信息",
-    Icon = "",   --推荐rbxassetid://4483345998
+    Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
     PremiumOnly = false
 })
 
@@ -31,7 +31,7 @@ XingX:AddLabel("应该不会ban（maybe）")
 
 local Tab = Window:MakeTab({
     Name = "主要",
-    Icon = "",   --推荐rbxassetid://4483345998
+    Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
     PremiumOnly = false
 })
 
