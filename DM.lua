@@ -45,38 +45,22 @@ Tab:AddButton({
     Name = "让章节按钮显示",
     Callback = function()
     if PG:FindFirstChild("MainGui")  then
-    
-        else
-        OrionLib:MakeNotification({
-        Name = "提示",
-        Content = "你这他妈是Dump Wars吗？",
-        Time = 2.5 })
-
-        local Sound = Instance.new("Sound")
-        Sound.SoundId = "rbxassetid://4590662766"
-        Sound.Parent = game:GetService("SoundService")
-        Sound.Volume = 5
-        Sound:Play()
-        Sound.Ended:Wait()
-        Sound:Destroy()
-      
     if PG.MainGui:FindFirstChild("StageSelectionUI") then
-        else
-        OrionLib:MakeNotification({
-        Name = "提示",
-        Content = "你这他妈是Dump Wars吗？",
-        Time = 2.5 })
-
-        local Sound = Instance.new("Sound")
-        Sound.SoundId = "rbxassetid://4590662766"
-        Sound.Parent = game:GetService("SoundService")
-        Sound.Volume = 5
-        Sound:Play()
-        Sound.Ended:Wait()
-        Sound:Destroy()
-    
     if PG.MainGui:FindFirstChild("Right_Button") then
     game:GetService("Players").LocalPlayer.PlayerGui.MainGui.StageSelectionUI.Right_Button.Visible = true    
+    
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "已显示",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
     else
         OrionLib:MakeNotification({
         Name = "提示",
@@ -91,9 +75,35 @@ Tab:AddButton({
         Sound.Ended:Wait()
         Sound:Destroy()
     end
-    end    
-    
+    else
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "你这他妈是Dump Wars吗？",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
     end
+    else
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "你这他妈是Dump Wars吗？",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
+    end
+    
 end})
 
 Tab:AddButton({
@@ -109,6 +119,19 @@ Tab:AddButton({
             end
                 print(Noob)
                 rawset(Noob, "AbilityCooldown" ,0)
+        
+        OrionLib:MakeNotification({
+        Name = "提示",
+        Content = "修改成功",
+        Time = 2.5 })
+
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Parent = game:GetService("SoundService")
+        Sound.Volume = 5
+        Sound:Play()
+        Sound.Ended:Wait()
+        Sound:Destroy()
 
     else
             OrionLib:MakeNotification({
