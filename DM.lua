@@ -45,7 +45,7 @@ end})
 
 local function GDNotice(a:string ,s:string ,d:number )
 
-if LodingComplet == true then
+if LodingComplet then
 
 OrionLib:MakeNotification({
     Name = a,
@@ -168,24 +168,6 @@ Tab:AddButton({
 end})
 
 local CH = game:GetService("Players").LocalPlayer.Character
-Tab:AddButton({
-    Name = "改变摄像头（不可逆）",
-    Callback = function()
-   
-workspace.Camera:Destroy()
-wait(0.5)
-workspace.Camera.CameraSubject = CH.Humanoid
-workspace.Camera.CameraType = Enum.CameraType.Track
-CH.Humanoid.WalkSpeed = 16
-for _ , v in workspace.SpawnBox:GetChildren() do
-if v.Name == "Part" then
-v.Transparency = 0.5
-v.CanCollide = false
-elseif v.Name == "SpawnLocation" then
-v.Transparency = 0
-end
-end
-end})
 
  local SF = game:GetService("Players").LocalPlayer.CameraMaxZoomDistance
 PLR:AddTextbox({
@@ -277,6 +259,24 @@ OrionLib:MakeNotification({
 end
 end})
 
+PLR:AddButton({
+    Name = "改变摄像头（不可逆）",
+    Callback = function()
+   
+workspace.Camera:Destroy()
+wait(0.5)
+workspace.Camera.CameraSubject = CH.Humanoid
+workspace.Camera.CameraType = Enum.CameraType.Track
+CH.Humanoid.WalkSpeed = 16
+for _ , v in workspace.SpawnBox:GetChildren() do
+if v.Name == "Part" then
+v.Transparency = 0.5
+v.CanCollide = false
+elseif v.Name == "SpawnLocation" then
+v.Transparency = 0
+end
+end
+end})
 
 
 PLR:AddButton({
@@ -306,7 +306,7 @@ end
 end)
 
 
-local TOF = nil
+local TOF = false
 local BName = "JNTM"
 local TName = "NGM"
 
@@ -358,7 +358,7 @@ end
 
 
 
-local DXM = "无"
+local DXM = ""
 ESP:AddParagraph("选择Esp对象","LoL")
 ESP:AddDropdown({
     Name = "选择对象",
@@ -380,17 +380,28 @@ ESP:AddToggle({
  TOF = v
 if TOF == true then
 GDNotice("提示","已经开启",3)
+
 spawn(function()
+if TOF == true then
+if DXM == "友方" or DXM == "全部" then
 for _ , sa in workspace.Units.Blue:GetChildren() do
 ESSSP(sa)
 end
 end
-spawn(function()
+end
+end)
 
+
+
+spawn(function()
+if TOF == true then
+if DXM == "敌方" or DXM == "全部" then
 for _ , sa in workspace.Units.Red:GetChildren() do
 ESSSP(sa)
 end
 end
+end
+end)
 
 elseif TOF == false then
 GDNotice("提示","已经关闭",3)
@@ -424,6 +435,7 @@ end)
 
 LodingComplet = true
 GDNotice("提示","加载完成",3)
+
 --[[
 Tab:AddTextbox({
     Name = "输入",
