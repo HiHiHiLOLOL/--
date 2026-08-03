@@ -1,6 +1,7 @@
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/tiaow/--/main/DM.lua"))()
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/-/Main/UI"))()
 
+local LodingComplet = false
 
 
 OrionLib:MakeNotification({
@@ -42,6 +43,28 @@ Tab:AddTextbox({
 end})
 ]]
 
+local function GDNotice(a:string ,s:string ,d:number )
+
+if LodingComplet == true then
+
+OrionLib:MakeNotification({
+    Name = a,
+    Content = s,
+    Time = d
+    })
+
+local Sound = Instance.new("Sound")
+    Sound.SoundId = "rbxassetid://4590662766"
+    Sound.Parent = game:GetService("SoundService")
+    Sound.Volume = 5
+    Sound:Play()
+    Sound.Ended:Wait()
+    Sound:Destroy()
+
+end
+end
+
+
 local Tab = Window:MakeTab({
     Name = "主要",
     Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
@@ -52,7 +75,11 @@ local PLR = Window:MakeTab({
     Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
     PremiumOnly = false
 })
-
+local ESP = Window:MakeTab({
+    Name = "显示",
+    Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
+    PremiumOnly = false
+})
 
 
 
@@ -277,6 +304,126 @@ game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = SF
 game.Workspace.CurrentCamera.FieldOfView = SJu
 end
 end)
+
+
+local TOF = nil
+local BName = "JNTM"
+local TName = "NGM"
+
+local function ESSSP(v)
+
+if not v:FindFirstChild(BName) then
+if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v:FindFirstChild("Head") then
+
+local BbG = Instance.new("BillboardGui")
+BbG.Parent = v
+BbG.AlwaysOnTop = true
+BbG.Adornee = v.Head
+BbG.Enabled = true
+BbG.ExtentsOffset = Vector3.new(0,3,0)
+BbG.Size = UDim2.new(0,1,0,1)
+BbG.Name = BName
+
+local TeBo = Instance.new("TextBox")
+TeBo.Size = UDim2.new(0,1,0,1)
+TeBo.BackgroundTransparency = 1
+
+spawn(function() while task.wait() do
+TeBo.Text = BbG.Parent.Humanoid.Health .. "/" .. BbG.Parent.Humanoid.MaxHealth
+end
+end)
+
+TeBo.BorderSizePixel = 0
+TeBo.TextColor3 = Color3.new(0,1,0)
+TeBo.TextSize = 30
+TeBo.TextStrokeTransparency = 0
+TeBo.TextStrokeColor3 = Color3.new(0,0,0)
+TeBo.Parent = BbG
+TeBo.Name = TName
+
+spawn(function() while task.wait(0.01) do
+if TOF == false then
+BbG:Destroy()
+
+
+end
+end
+
+end
+end
+end)
+end
+
+
+
+
+
+local DXM = "无"
+ESP:AddParagraph("选择Esp对象","LoL")
+ESP:AddDropdown({
+    Name = "选择对象",
+    Default = "无",
+    Options = {"无","友方","敌方","全部"},
+    Save = false,
+    Callback = function(v)
+    DXM = v
+    GDNotice("提示","已经选择" .. DXM ,3)
+        print("选中：", DXM)
+    end
+})
+
+
+ESP:AddToggle({
+    Name = "开启HP显示",
+    Default = false,
+    Callback = function(v)
+ TOF = v
+if TOF == true then
+GDNotice("提示","已经开启",3)
+spawn(function()
+for _ , sa in workspace.Units.Blue:GetChildren() do
+ESSSP(sa)
+end
+end
+spawn(function()
+
+for _ , sa in workspace.Units.Red:GetChildren() do
+ESSSP(sa)
+end
+end
+
+elseif TOF == false then
+GDNotice("提示","已经关闭",3)
+
+
+end
+end})               
+
+
+workspace.Units.Blue.ChildAdded:Connect(function(v)
+
+if TOF == true then
+if DXM == "友方" or DXM == "全部" then
+
+ESSSP(v)
+
+
+end
+end
+end)
+
+workspace.Units.Red.ChildAdded:Connect(function(v)
+
+if TOF == true then
+if DXM == "敌方" or DXM == "全部" then
+
+ESSSP(v)
+end
+end
+end)
+
+LodingComplet = true
+GDNotice("提示","加载完成",3)
 --[[
 Tab:AddTextbox({
     Name = "输入",
