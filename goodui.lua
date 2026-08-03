@@ -49,4 +49,14 @@ Tab:AddTextbox({
     Callback = function()
 
 end})
+Tab:AddDropdown({
+    Name = "模式选择",
+    Default = "模式1",
+    Options = {"模式1","模式2","模式3"},
+    Save = true,
+    Callback = function(selected)
+        print("选中：", selected)
+    end
+})
+
 
