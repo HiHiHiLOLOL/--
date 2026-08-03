@@ -345,14 +345,14 @@ spawn(function() while task.wait(0.01) do
 if TOF == false then
 BbG:Destroy()
 
-
-end
-end
-
 end
 end
 end)
 end
+end
+end
+
+
 
 
 
