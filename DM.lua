@@ -80,7 +80,11 @@ local ESP = Window:MakeTab({
     Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
     PremiumOnly = false
 })
-
+local HSFun = Window:MakeTab({
+    Name = "娱乐",
+    Icon = "rbxassetid://4483345998",   --推荐rbxassetid://4483345998
+    PremiumOnly = false
+})
 
 
 local PG = game:GetService("Players").LocalPlayer.PlayerGui
@@ -432,6 +436,83 @@ ESSSP(v)
 end
 end
 end)
+
+local DXxx = ""
+HSFun:AddParagraph("雕像形象","给你的雕像美化，无任何其他副作用,只限默认雕像！")
+HSFun:AddDropdown({
+    Name = "选择形象",
+    Default = "无",
+    Options = {"无","⚡️黄金雕像⚡️","玻璃雕像"},
+    Save = false,
+    Callback = function(v)
+    DXxx = v
+    GDNotice("提示","已经选择" .. DXxx ,3)
+        print("选中：", DXM)
+    end
+})
+
+
+HSFun:AddButton({
+    Name = "美化",
+    Callback = function()
+ 
+
+
+if  workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("Blue_Statue") then
+local DM = workspace.Map.Blue_Statue.Dummy
+if workspace.Map.Blue_Statue.Config.StatueType.Value ==  "Default"  then
+workspace.Map.Blue_Statue.Dummy.Crown.Mesh.TextureId =  ""
+workspace.Map.Blue_Statue.Dummy.Head.Mesh.TextureId =  ""
+
+
+if DXxx == "⚡️黄金雕像⚡️" then
+for _ , V in DM:GetChildren() do
+if V:IsA("Part") or V:IsA("MeshPart") then
+V.Color = Color3.new(1,1,0)
+V.Material = Enum.Material.Metal
+V.Reflectance = 0
+elseif V.Name == "Belt" then
+V.Union.Color = Color3.new(1,1,0)
+V.Union.Material = Enum.Material.Metal
+V.Union.Reflectance = 0
+V.Part.Color = Color3.new(1,1,0)
+V.Part.Material = Enum.Material.Metal
+V.Part.Reflectance = 0
+end
+end
+
+
+
+elseif DXxx == "玻璃雕像" then
+for _ , V in DM:GetChildren() do
+if V:IsA("Part") or V:IsA("MeshPart") then
+V.Color = Color3.new(1,1,1)
+V.Material = Enum.Material.Glass
+V.Reflectance = 1
+elseif V.Name == "Belt" then
+V.Union.Color = Color3.new(1,1,1)
+V.Union.Material = Enum.Material.Glass
+V.Union.Reflectance = 1
+V.Part.Color = Color3.new(1,1,1)
+V.Part.Material = Enum.Material.Glass
+V.Part.Reflectance = 1
+end
+end
+
+
+end
+else
+print("no")
+GDNotice("提示","为什么不是默认" ,3)
+end
+else
+GDNotice("提示","请在战斗中使用" ,2)
+end
+end})               
+
+
+
+
 
 LodingComplet = true
 GDNotice("提示","加载完成",3)
