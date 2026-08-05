@@ -512,6 +512,76 @@ end})
 
 
 
+local Cride = {
+["Name"] = "" ,
+["tilte"] = "" ,
+["text"]  = "" ,
+["Image"] = ""
+
+}
+
+local Cride1 = nil
+HSFun:AddParagraph("","给你的雕像美化，无任何其他副作用,只限默认雕像！")
+HSFun:AddDropdown({
+    Name = "修改创作人员",
+    Default = "",
+    Options = {"Name","Title","Text","Image"} ,
+    Save = false,
+    Callback = function(v)
+    
+     Cride1 = v 
+    
+    end
+})
+
+local TheCrideV = 0
+
+local function CrideFT(v)
+end
+local Cride1M = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.Credits.Credits["1_1loooool24"]:Clone()
+Cride1M.Parent = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.Credits.Credits
+Cride1M.Name = "P" .. TheCrideV
+Cride1M.Frame.Image = ""
+TheCrideV = TheCrideV + 1
+
+HSFun:AddTextbox({
+    Name = "输入",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(v)
+    if Cride1 == "Name" or Cride1 == "Title" or Cride1 == "Text" or Cride1 == "Image" or Cride1 ~= nil then
+
+    if Cride1 == "Image" then
+    if string.find(v,"rbxassetid://") then
+    Cride1M.Frame.Image = v
+    else
+    Cride1M.Frame.Image = "rbxassetid://" .. v
+    end
+    
+    
+    elseif Cride1 == "Name" then
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Bio.Text = v
+    elseif Cride1 == "Title" then
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Label.Text = v
+    elseif Cride1 == "Text" then
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Title.Text = v
+ 
+    
+
+
+
+    end
+    GDNotice("提示", Cride1 .. ":" .. v  ,3)
+    else
+    GDNotice("先选择", "先选择",3)
+
+    end
+end})
+
+
+
+
+
 
 
 LodingComplet = true
