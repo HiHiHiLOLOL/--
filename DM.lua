@@ -27,6 +27,8 @@ local XingX = Window:MakeTab({
 
 XingX:AddParagraph("作者：","Idk")
 XingX:AddLabel("应该不会ban（maybe）")
+
+XingX:AddLabel("设置            ")
 XingX:AddButton({
     Name = "关闭脚本（不是隐藏）",
     Callback = function()
@@ -528,7 +530,7 @@ local Cride1 = nil
 
 
 
-
+HSFun:AddLabel("添加创作者                    ")
 local info = HSFun:AddParagraph("当前创建的头像", "名字：" .. Cride["Name"] .. "\n标题：" .. Cride["text"] .. "\n正文：" .. Cride["tilte"] .. "\n图片：" .. Cride["Image"])
 
 
@@ -550,8 +552,8 @@ HSFun:AddDropdown({
 
 
 
-local SCDXB = {
-}
+
+
 
 local TheCrideV = 0
 
@@ -568,8 +570,8 @@ local THEBUTTON1 = Cride["text"]
 local THEBUTTON2 = Cride["tilte"]
 local THEBUTTON3 = Cride["Name"]
 local THEBUTTON4 =  "P" .. TheCrideV
-table.insert(SCDXB,THEBUTTON3)
-SCDXB[THEBUTTON3] = THEBUTTON4
+
+
 Cride1M.MouseButton1Click:Connect(function()
     workspace.Sounds.SFX.Hover:Play()
     workspace.Sounds.SFX.Click3:Play()
@@ -636,29 +638,6 @@ HSFun:AddButton({
     GDNotice("创建成功", "名字：" .. Cride["Name"] .. "\n标题：" .. Cride["tilte"] .. "\n正文：" .. Cride["text"] .. "\n图片：" .. Cride["Image"] ,3)
     CrideFT()
 end})
-local AADropdv = nil
-local AADrop = HSFun:AddDropdown({
-    Name = "选择你创建过的头像",
-    Default = "",
-    Options = SCDXB ,
-    Save = false,
-    Callback = function(v)
-    AADropdv = v
-     
-    
-    end
-})
-HSFun:AddButton({
-    Name = "刷新",
-    Callback = function()
-    AADrop:Refresh(SCDXB, true)
-end})
-HSFun:AddButton({
-    Name = "删除",
-    Callback = function()
-    
-end})
-
 
 LodingComplet = true
 GDNotice("提示","加载完成",3)
