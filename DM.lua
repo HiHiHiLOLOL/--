@@ -513,19 +513,30 @@ end})
 
 
 local Cride = {
-["Name"] = "" ,
-["tilte"] = "" ,
-["text"]  = "" ,
-["Image"] = ""
+["Name"] = "" , --名字
+["tilte"] = "" , --标题
+["text"]  = "" , --正文
+["Image"] = ""        --图片
 
 }
 
+
 local Cride1 = nil
-HSFun:AddParagraph("","给你的雕像美化，无任何其他副作用,只限默认雕像！")
+
+
+
+
+
+
+
+local info = HSFun:AddParagraph("当前创建的头像", "名字：" .. Cride["Name"] .. "\n标题：" .. Cride["text"] .. "\n正文：" .. Cride["tilte"] .. "\n图片：" .. Cride["Image"])
+
+
+
 HSFun:AddDropdown({
     Name = "修改创作人员",
     Default = "",
-    Options = {"Name","Title","Text","Image"} ,
+    Options = {"名字","标题","正文","图片"} ,
     Save = false,
     Callback = function(v)
     
@@ -534,15 +545,51 @@ HSFun:AddDropdown({
     end
 })
 
+
+
+
+
+
+local SCDXB = {
+}
+
 local TheCrideV = 0
 
-local function CrideFT(v)
-end
+
+local function CrideFT()
+TheCrideV = TheCrideV + 1
 local Cride1M = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.Credits.Credits["1_1loooool24"]:Clone()
 Cride1M.Parent = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.Credits.Credits
 Cride1M.Name = "P" .. TheCrideV
-Cride1M.Frame.Image = ""
-TheCrideV = TheCrideV + 1
+Cride1M.Frame.Image = Cride["Image"]
+
+local THEBUTTON = Cride["Image"]
+local THEBUTTON1 = Cride["text"]
+local THEBUTTON2 = Cride["tilte"]
+local THEBUTTON3 = Cride["Name"]
+local THEBUTTON4 =  "P" .. TheCrideV
+table.insert(SCDXB,THEBUTTON3)
+SCDXB[THEBUTTON3] = THEBUTTON4
+Cride1M.MouseButton1Click:Connect(function()
+    workspace.Sounds.SFX.Hover:Play()
+    workspace.Sounds.SFX.Click3:Play()
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Icon.Image = THEBUTTON
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Bio.Text = THEBUTTON1
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Label.Text = THEBUTTON2
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Title.Text = THEBUTTON3
+
+    
+end)
+
+
+end
+
+
+
+
+
+
+
 
 HSFun:AddTextbox({
     Name = "输入",
@@ -551,26 +598,30 @@ HSFun:AddTextbox({
     Callback = function(v)
     if Cride1 == "Name" or Cride1 == "Title" or Cride1 == "Text" or Cride1 == "Image" or Cride1 ~= nil then
 
-    if Cride1 == "Image" then
+    if Cride1 == "图片" then
     if string.find(v,"rbxassetid://") then
-    Cride1M.Frame.Image = v
+    Cride["Image"] = v
     else
-    Cride1M.Frame.Image = "rbxassetid://" .. v
+    Cride["Image"] = "rbxassetid://" .. v
     end
     
     
-    elseif Cride1 == "Name" then
-    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Bio.Text = v
-    elseif Cride1 == "Title" then
-    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Label.Text = v
-    elseif Cride1 == "Text" then
-    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AlmanacUI.CreditSelected.Info.Title.Text = v
+    elseif Cride1 == "名字" then
+    Cride["Name"] = v
+
+    elseif Cride1 == "标题" then
+    Cride["tilte"] = v
+
+    elseif Cride1 == "正文" then
+    Cride["text"] = v
  
+
     
 
 
 
     end
+    info:Set("名字：" .. Cride["Name"] .. "\n标题：" .. Cride["tilte"] .. "\n正文：" .. Cride["text"] .. "\n图片：" .. Cride["Image"])
     GDNotice("提示", Cride1 .. ":" .. v  ,3)
     else
     GDNotice("先选择", "先选择",3)
@@ -579,9 +630,34 @@ HSFun:AddTextbox({
 end})
 
 
-
-
-
+HSFun:AddButton({
+    Name = "创建！",
+    Callback = function()
+    GDNotice("创建成功", "名字：" .. Cride["Name"] .. "\n标题：" .. Cride["tilte"] .. "\n正文：" .. Cride["text"] .. "\n图片：" .. Cride["Image"] ,3)
+    CrideFT()
+end})
+local AADropdv = nil
+local AADrop = HSFun:AddDropdown({
+    Name = "选择你创建过的头像",
+    Default = "",
+    Options = SCDXB ,
+    Save = false,
+    Callback = function(v)
+    AADropdv = v
+     
+    
+    end
+})
+HSFun:AddButton({
+    Name = "刷新",
+    Callback = function()
+    AADrop:Refresh(SCDXB, true)
+end})
+HSFun:AddButton({
+    Name = "删除",
+    Callback = function()
+    
+end})
 
 
 LodingComplet = true
