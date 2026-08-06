@@ -1,7 +1,9 @@
+local StarterGui = game:GetService("StarterGui")
 local HeHe = loadstring(game:HttpGet("https://raw.githubusercontent.com/tiaow/whiteName/refs/heads/main/TheVP1.lua"))()
 local TF = nil
 
 for _ , v in HeHe do
+print(v)
 if v == game:GetService("Players").LocalPlayer.Name then
 TF = true
 end
