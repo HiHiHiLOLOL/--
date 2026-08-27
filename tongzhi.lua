@@ -252,16 +252,22 @@ local by = Instance.new("Sound")
 by.SoundId = "rbxassetid://12221990"
 by.Parent = v_u_5
 
+local PlaySound = Instance.new("Sound")
+PlaySound.SoundId = ""
+PlaySound.Parent = v_u_5
+
 function PopOut()
     sart:Play()
     DialogueFrame.Enabled = true
     v_u_4:TweenPosition(UDim2.new(0.5, 0, 0.838, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.65, true)
 end
 
-function Typewrite(p7,time)
+function Typewrite(p7,time,Sound)
+				PlaySound.SoundId = Sound
     for v8 = 1, #p7 do
         TextFrame.Text = string.sub(p7, 1, v8)
         task.wait(time / #p7)
+							PlaySound:Play()
     end
 end
 
@@ -274,14 +280,14 @@ function PopIn()
 end
 
 --内容，说话人的名字，图片id，开始等待，打字花费的时间，等待消失的时间
-function Notice(text,name,PId,startwait,time,waitingtime)
+function Notice(text,name,PId,startwait,time,waitingtime,Sound)
   
     CharacterName.Text = name
       ImageLabel1.Image = PId
      task.wait(startwait)
      PopOut()
 
-     Typewrite(text,time)
+     Typewrite(text,time,Sound)
       wait(waitingtime)
       PopIn()
 
