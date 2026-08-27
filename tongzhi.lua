@@ -1,4 +1,4 @@
---
+--https://raw.githubusercontent.com/HiHiHiLOLOL/--/refs/heads/main/tongzhi.lua
 
 local DialogueFrame = Instance.new("ScreenGui")
 DialogueFrame.Name = "DialogueFrame"
