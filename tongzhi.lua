@@ -5,11 +5,13 @@ DialogueFrame.Name = "DialogueFrame"
 DialogueFrame.Parent  = game:GetService("Players").LocalPlayer.PlayerGui
 DialogueFrame.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 DialogueFrame.IgnoreGuiInset = true
+DialogueFrame.Enabled = false
+
 
 
 
 local Main = Instance.new("Frame")
-Main.Visible = false
+Main.Visible = true
 Main.Name = "Main"
 Main.Parent = DialogueFrame
 Main.Active = false
@@ -252,7 +254,7 @@ by.Parent = v_u_5
 
 function PopOut()
     sart:Play()
-    v_u_4.Visible = true
+    DialogueFrame.Visible = true
     v_u_4:TweenPosition(UDim2.new(0.5, 0, 0.838, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.65, true)
 end
 
@@ -267,7 +269,7 @@ function PopIn()
     by:Play()
     v_u_4:TweenPosition(UDim2.new(0.5, 0, 0.925, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.5, true)
     task.wait(0.5)
-    v_u_4.Visible = false
+    DialogueFrame.Visible = false
     DialogueFrame:Destroy()
 end
 
