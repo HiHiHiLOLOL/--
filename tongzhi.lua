@@ -254,7 +254,7 @@ by.Parent = v_u_5
 
 function PopOut()
     sart:Play()
-    DialogueFrame.Visible = true
+    DialogueFrame.Enabled = true
     v_u_4:TweenPosition(UDim2.new(0.5, 0, 0.838, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.65, true)
 end
 
@@ -269,7 +269,7 @@ function PopIn()
     by:Play()
     v_u_4:TweenPosition(UDim2.new(0.5, 0, 0.925, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.5, true)
     task.wait(0.5)
-    DialogueFrame.Visible = false
+    DialogueFrame.Enabled = false
     DialogueFrame:Destroy()
 end
 
