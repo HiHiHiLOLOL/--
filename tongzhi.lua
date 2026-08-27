@@ -1,4 +1,4 @@
-wait(2)
+--
 
 local DialogueFrame = Instance.new("ScreenGui")
 DialogueFrame.Name = "DialogueFrame"
@@ -271,11 +271,12 @@ function PopIn()
     DialogueFrame:Destroy()
 end
 
-
-function Notice(text,name,PId,time,waitingtime)
+--内容，说话人的名字，图片id，开始等待，打字花费的时间，等待消失的时间
+function Notice(text,name,PId,startwait,time,waitingtime)
   
     CharacterName.Text = name
       ImageLabel1.Image = PId
+     task.wait(startwait)
      PopOut()
 
      Typewrite(text,time)
@@ -286,5 +287,5 @@ function Notice(text,name,PId,time,waitingtime)
        sart:Destroy()
 end
 --[[
-Notice("古比这🤔，古比那，😍古比服务器😜，古比局域网，😘古比无线网🤑，古比内存😏，古比牛排😛，古比火腿😋，来源日本的亚洲古比产品🤩，我与伙伴化身古比狂欢😇，所有的古比都嗨到不行了🤫","kreekcraft","rbxassetid://7345286522",15,1)
+Notice("古比这🤔，古比那，😍古比服务器😜，古比局域网，😘古比无线网🤑，古比内存😏，古比牛排😛，古比火腿😋，来源日本的亚洲古比产品🤩，我与伙伴化身古比狂欢😇，所有的古比都嗨到不行了🤫","kreekcraft","rbxassetid://7345286522",1,15,1)
 ]]
